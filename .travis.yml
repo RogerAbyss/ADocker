@@ -8,6 +8,7 @@ install:
   - git clone -b sonar https://github.com/RogerAbyss/ADocker.git ~/ADocker
 
 script:
+  - set -o pipefail
   - docker images
   - docker-compose -f ~/ADocker/sonar/docker-compose.yml up &
   - for ((i=1; i<=300; i++)) { sleep 1; if docker ps -aqf "ancestor=postgres" | xargs docker logs 2>&1 | grep "ready to accept connections" &> /dev/null && docker ps -aqf "ancestor=asonarqube" | xargs docker logs 2>&1 | grep "Process\[web\] is up" &> /dev/null; then return 0; fi } && return 1
