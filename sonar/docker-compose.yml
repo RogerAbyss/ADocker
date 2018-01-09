@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  sonarqube:
+    build: .
+    image: asonarqube
+    ports:
+      - "8102:9000"
+    volumes:
+      - ../sonar/conf:/opt/sonarqube/conf
+      - ../sonar/data:/opt/sonarqube/data
+      - ../sonar/extensions:/opt/sonarqube/extensions
+      - ../sonar/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - sonarnet
+
+
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ../postgresql:/var/lib/postgresql
+      - ../postgresql/data:/var/lib/postgresql/data
+    networks:
+      - sonarnet
+
+networks:
+  sonarnet:
+    driver: bridge
