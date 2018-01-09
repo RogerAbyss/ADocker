@@ -5,7 +5,7 @@ services:
   - docker
 
 install:
-  - git clone https://github.com/RogerAbyss/ASonar.git ~/SonarOnDocker
+  - git clone -b sonar https://github.com/RogerAbyss/ADocker.git ~/SonarOnDocker
 
 script:
   - docker images
@@ -18,3 +18,7 @@ after_success:
 
 after_failure:
   - echo "---------- Docker orchestration failed! ----------"
+
+branches:
+  only:
+    - sonar
