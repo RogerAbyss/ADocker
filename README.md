@@ -23,4 +23,3 @@
 
 - [x] OwnCloud
 **私有云盘**
-[![build status badge](https://img.shields.io/travis/docker-library/owncloud/master.svg)]()
