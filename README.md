@@ -7,19 +7,8 @@
 
 ## Docker 列表
 
-
-## Docker 列表
-
-- [x] Sonar
-**质量管理平台**
-[![Travis branch](https://img.shields.io/travis/RogerAbyss/ADocker/sonar.svg)]()
-[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/RogerAbyss/ADocker/sonar.svg)]()
-
-- [x] Shadowsocks
-**科学上网神器**
-
-- [x] Prue-FTP
-**FTP服务器**
-
-- [x] OwnCloud
-**私有云盘**
+- abyss-ci-运维环境[仓库](https://github.com/RogerAbyss/docker-abyssci)
+- Sonar-质量管理平台[![Travis branch](https://img.shields.io/travis/RogerAbyss/ADocker/sonar.svg)]()[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/RogerAbyss/ADocker/sonar.svg)]()
+- Shadowsocks-科学上网神器
+- Prue-FTP-FTP服务器
+- OwnCloud-私有云盘
