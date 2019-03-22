@@ -1,8 +1,9 @@
 version: '3'
 
 services:
-  teamcity:
+  teamcity-server:
     image: jetbrains/teamcity-server
+    container_name: teamcity-server
     ports:
       - "8111:8111"
     volumes:
@@ -15,15 +16,16 @@ services:
 
   agent:
     image: jetbrains/teamcity-minimal-agent
+    container_name: teamcity-agent
     environment:
       - SERVER_URL=http://teamcity:8111
       - AGENT_NAME=abyss-mac
     volumes:
       - ./data/agent/conf:/data/teamcity_agent/conf
     links:
-      - teamcity
+      - teamcity-server
     depends_on:
-      - teamcity
+      - teamcity-server
     networks:
       - abyssnet
     restart: unless-stopped

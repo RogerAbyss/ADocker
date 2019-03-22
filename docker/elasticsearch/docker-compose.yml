@@ -12,6 +12,17 @@ services:
       discovery.type: single-node
     networks:
       - abyssnet
+  elastichd:
+    image: containerize/elastichd
+    container_name: elastichd
+    ports:
+      - 9800:9800
+    restart: unless-stopped
+    links: 
+      - elasticsearch
+    networks:
+      - abyssnet
+    depends_on: elasticsearch
 
 networks:
   abyssnet:
