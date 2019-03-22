@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  elasticsearch:
+    image: elasticsearch:6.6.2
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    restart: unless-stopped
+    environment:
+      cluster.name: elasticsearch
+      discovery.type: single-node
+    networks:
+      - abyssnet
+
+networks:
+  abyssnet:
+    driver: bridge

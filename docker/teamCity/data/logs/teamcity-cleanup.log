@@ -1,0 +1,85 @@
+[2019-03-08 01:40:14,349]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 01:40:14,354]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 01:40:14,376]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 01:44:48,699]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 01:44:48,733]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 01:44:48,754]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 02:00:00,005]   INFO -  jetbrains.buildServer.CLEANUP - Git cleanup started
+[2019-03-08 02:00:00,027]   INFO -  jetbrains.buildServer.CLEANUP - Git cleanup finished
+[2019-03-08 02:34:47,920]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 02:34:47,939]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 02:34:47,950]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 02:41:07,775]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 02:41:07,803]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 02:41:07,820]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 03:00:00,005]   INFO -  jetbrains.buildServer.CLEANUP - Trying to get lock for the maintenance process...
+[2019-03-08 03:00:00,009]   INFO -  jetbrains.buildServer.CLEANUP - Lock for the maintenance process obtained
+[2019-03-08 03:00:00,026]   INFO -  jetbrains.buildServer.CLEANUP - Preparing for clean-up...
+[2019-03-08 03:00:00,036]   INFO -  jetbrains.buildServer.CLEANUP - Clean-up started...
+[2019-03-08 03:00:00,070]   INFO -  jetbrains.buildServer.CLEANUP - Will cleanup data for 0 build configurations removed before 2019-03-03 03:00:00.069
+[2019-03-08 03:00:00,072]   INFO -  jetbrains.buildServer.CLEANUP - Collecting builds depending on other builds by specific build number ...
+[2019-03-08 03:00:00,080]   INFO -  jetbrains.buildServer.CLEANUP - Collecting builds depending on other builds by sources or artifacts...
+[2019-03-08 03:00:00,098]   INFO -  jetbrains.buildServer.CLEANUP - Done collecting depending builds for each cleanup level
+[2019-03-08 03:00:00,100]   INFO -  jetbrains.buildServer.CLEANUP - Collecting builds for cleanup for each cleanup level...
+[2019-03-08 03:00:00,126]   INFO -  jetbrains.buildServer.CLEANUP - Collected builds for 0 build configurations
+[2019-03-08 03:00:00,143]   INFO -  jetbrains.buildServer.CLEANUP - Start compacting HSQL database...
+[2019-03-08 03:00:00,948]   INFO -  jetbrains.buildServer.CLEANUP - Compacting HSQL database finished
+[2019-03-08 03:00:01,291]   INFO -  jetbrains.buildServer.CLEANUP - Start processing 30 afterCleanup extensions
+[2019-03-08 03:00:01,292]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (1 of 30): jetbrains.buildServer.artifacts.s3.cleanup.S3CleanupExtension
+[2019-03-08 03:00:01,293]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (2 of 30): jetbrains.buildServer.serverSide.statistics.diskusage.DiskUsageSListener$PinnedBuildsCollector
+[2019-03-08 03:00:01,294]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (3 of 30): jetbrains.buildServer.serverSide.impl.cleanup.BackgroundBuildDataCleanerImpl
+[2019-03-08 03:00:01,296]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (4 of 30): jetbrains.buildServer.buildTriggers.vcs.clearcase.structure.ClearCaseStructureCache$ClearcaseCacheGeneralDataCleaner
+[2019-03-08 03:00:01,298]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (5 of 30): jetbrains.buildServer.serverSide.impl.cleanup.ObsoleteFilesCleaner
+[2019-03-08 03:00:01,300]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (6 of 30): jetbrains.buildServer.serverSide.impl.projectSources.PatchCacheImpl
+[2019-03-08 03:00:01,308]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (7 of 30): jetbrains.buildServer.serverSide.impl.artifacts.ExternalBuildArtifactsCacheImpl
+[2019-03-08 03:00:01,309]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (8 of 30): jetbrains.buildServer.users.impl.UserModelImpl
+[2019-03-08 03:00:01,309]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (9 of 30): jetbrains.buildServer.serverSide.impl.versionedSettings.GeneratedSettingsCache
+[2019-03-08 03:00:01,313]   INFO -  jetbrains.buildServer.CLEANUP - Searching for obsolete log files (not used by any build) under build logs directory: /data/teamcity_server/datadir/system/messages
+[2019-03-08 03:00:01,314]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (10 of 30): jetbrains.buildServer.serverSide.identifiers.ProjectIdentifiersManagerImpl
+[2019-03-08 03:00:01,315]   INFO -  jetbrains.buildServer.CLEANUP - Cannot find obsolete build log directories in old format
+[2019-03-08 03:00:01,315]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (11 of 30): jetbrains.buildServer.serverSide.impl.MultiNodeTasksDbImpl
+[2019-03-08 03:00:01,318]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (12 of 30): jetbrains.buildServer.serverSide.impl.cleanup.BuildArtifactsCleaner
+[2019-03-08 03:00:01,319]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (13 of 30): jetbrains.buildServer.serverSide.CustomDataStorageManagerImpl
+[2019-03-08 03:00:01,319]   INFO -  jetbrains.buildServer.CLEANUP - Searching for obsolete artifact directories (not used by any build) under directories: [/data/teamcity_server/datadir/system/artifacts]
+[2019-03-08 03:00:01,320]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (14 of 30): jetbrains.buildServer.serverSide.TestName2IndexImpl
+[2019-03-08 03:00:01,323]   INFO -  jetbrains.buildServer.CLEANUP - 		Start cleaning unused test names ...
+[2019-03-08 03:00:01,324]   INFO -  jetbrains.buildServer.CLEANUP - Removed no obsolete artifact directories (0 processed)
+[2019-03-08 03:00:01,325]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (15 of 30): jetbrains.buildServer.serverSide.statistics.impl.BuildDataStorageImpl
+[2019-03-08 03:00:01,326]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (16 of 30): jetbrains.buildServer.serverSide.mute.LowLevelProblemMutingServiceImpl$TestMutesCleaner
+[2019-03-08 03:00:01,326]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (17 of 30): org.jetbrains.teamcity.docker.cleanup.PushedImagesRegistryCleaner
+[2019-03-08 03:00:01,327]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (18 of 30): jetbrains.buildServer.duplicator.DuplicatesDataCleaner
+[2019-03-08 03:00:01,331]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (19 of 30): jetbrains.buildServer.controllers.login.RememberMe$1
+[2019-03-08 03:00:01,331]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (20 of 30): jetbrains.buildServer.serverSide.stat.TestFailureRateCollector
+[2019-03-08 03:00:01,333]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (21 of 30): jetbrains.buildServer.responsibility.impl.ResponsibilityCleanupExtension
+[2019-03-08 03:00:01,333]   INFO -  jetbrains.buildServer.CLEANUP - 		Starting cleanup of responsibility entries...
+[2019-03-08 03:00:01,334]   INFO -  jetbrains.buildServer.CLEANUP - 		Will delete 0 responsibility entries
+[2019-03-08 03:00:01,335]   INFO -  jetbrains.buildServer.CLEANUP - 		Finished cleanup of 0 responsibility entries
+[2019-03-08 03:00:01,335]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (22 of 30): jetbrains.buildServer.swabra.serverHealth.SwabraCleanCheckoutWatcherImpl$2
+[2019-03-08 03:00:01,336]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (23 of 30): jetbrains.buildServer.serverSide.impl.personal.PersonalBuildCleaner
+[2019-03-08 03:00:01,343]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (24 of 30): jetbrains.buildServer.serverSide.metadata.impl.metadata.MetadataStorageBean
+[2019-03-08 03:00:01,378]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (25 of 30): jetbrains.buildServer.serverSide.impl.cleanup.InvalidHistoryRecordsCleaner
+[2019-03-08 03:00:01,379]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (26 of 30): jetbrains.buildServer.diagnostic.ThreadDumpsCleaner
+[2019-03-08 03:00:01,381]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (27 of 30): jetbrains.buildServer.serverSide.impl.audit.AuditLogCleanerImpl
+[2019-03-08 03:00:01,382]   INFO -  jetbrains.buildServer.CLEANUP - 		Removing audit log records older than 365 days ...
+[2019-03-08 03:00:01,391]   INFO -  jetbrains.buildServer.CLEANUP - 		Removing audit log records for obsolete tests ...
+[2019-03-08 03:00:01,394]   INFO -  jetbrains.buildServer.CLEANUP - 		Removing audit log records for obsolete builds ...
+[2019-03-08 03:00:01,398]   INFO -  jetbrains.buildServer.CLEANUP - 		Finished removing audit log records.
+[2019-03-08 03:00:01,399]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (28 of 30): jetbrains.buildServer.runner.codeInspection.InspectionDataCleaner
+[2019-03-08 03:00:01,404]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (29 of 30): jetbrains.buildServer.serverSide.impl.OldAgentsCleaner
+[2019-03-08 03:00:01,405]   INFO -  jetbrains.buildServer.CLEANUP - 	Executing afterCleanup extension (30 of 30): jetbrains.buildServer.diagnostic.ThreadStatCleaner
+[2019-03-08 03:00:01,406]   INFO -  jetbrains.buildServer.CLEANUP - Finished processing afterCleanup extensions, took 115ms
+[2019-03-08 03:00:01,408]   INFO -  jetbrains.buildServer.CLEANUP - Clean-up finished, took 1s
+[2019-03-08 03:00:01,429]   INFO -  jetbrains.buildServer.CLEANUP - Post-cleanup tasks finished, took 19ms
+[2019-03-08 03:00:01,433]   INFO -  jetbrains.buildServer.CLEANUP - Lock for the maintenance process released
+[2019-03-08 08:35:58,514]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 08:35:58,646]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 08:35:58,736]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 08:39:55,315]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 08:39:55,359]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 08:39:55,382]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 08:45:55,007]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 08:45:55,023]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 08:45:55,025]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled
+[2019-03-08 09:10:47,966]   INFO -  jetbrains.buildServer.CLEANUP - Max cleanup duration is set to 0 seconds
+[2019-03-08 09:10:47,996]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup time has been set to 03:00:00 daily
+[2019-03-08 09:10:48,008]   INFO -  jetbrains.buildServer.CLEANUP - Cleanup is enabled

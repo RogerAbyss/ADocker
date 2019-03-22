@@ -1,0 +1,22 @@
+[2019-03-08 01:40:01,640]   INFO [ssing plugins 2] - ache.fs.impl.MirrorManagerImpl - No mapping file found at /data/teamcity_server/datadir/system/caches/svn/map, create a new one
+[2019-03-08 01:40:01,646]   INFO [ssing plugins 2] - ache.fs.impl.MirrorManagerImpl - Restore mapping from existing repositories
+[2019-03-08 01:40:01,648]   INFO [ssing plugins 2] - ache.fs.impl.MirrorManagerImpl - No existing repositories found
+[2019-03-08 01:40:02,308]   INFO [ssing plugins 3] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 01:40:02,873]   INFO [ssing plugins 1] - gers.vcs.git.MirrorManagerImpl - No mapping file found at /data/teamcity_server/datadir/system/caches/git/map, create a new one
+[2019-03-08 01:40:02,880]   INFO [ssing plugins 1] - gers.vcs.git.MirrorManagerImpl - Restore mapping from existing repositories
+[2019-03-08 01:40:02,883]   INFO [ssing plugins 1] - gers.vcs.git.MirrorManagerImpl - No existing repositories found
+[2019-03-08 01:40:22,576]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 01:44:39,477]   INFO [ssing plugins 2] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 01:44:53,789]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 02:34:40,346]   INFO [ssing plugins 2] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 02:34:56,375]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 02:40:59,280]   INFO [ssing plugins 1] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 02:41:17,585]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 08:35:51,973]   INFO [ssing plugins 2] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 08:36:07,396]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 08:39:47,123]   INFO [ssing plugins 2] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 08:40:03,067]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 08:45:41,405]   INFO [ssing plugins 3] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 08:46:00,853]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task
+[2019-03-08 09:10:42,157]   INFO [ssing plugins 3] -      jetbrains.buildServer.VCS - Server-wide hg path is not set, will use path from the VCS root settings
+[2019-03-08 09:10:54,405]   INFO [ti node tasks 1] -      jetbrains.buildServer.VCS - Accepted the periodical checking for changes task

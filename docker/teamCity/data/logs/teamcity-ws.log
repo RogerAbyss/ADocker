@@ -1,0 +1,10 @@
+[2019-03-08 01:39:41,262]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 01:44:22,990]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 02:34:16,098]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 02:40:29,065]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 06:28:25,611]   WARN [nio-8111-exec-8] - etbrains.buildServer.WEBSOCKET - Closing session d: User logs out
+[2019-03-08 06:34:46,280]   WARN [nio-8111-exec-5] - etbrains.buildServer.WEBSOCKET - Closing session 14: User logs out
+[2019-03-08 08:35:20,835]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 08:39:19,352]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 08:45:20,349]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
+[2019-03-08 09:10:16,568]   INFO [id: MAIN_SERVER] - etbrains.buildServer.WEBSOCKET - WebSocket feature is supported for Apache Tomcat/8.5.37
