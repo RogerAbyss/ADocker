@@ -28,5 +28,5 @@ services:
     links:
       - db
     volumes:
-      - ./data:/var/www/html
+      - ./data/html:/var/www/html
     restart: unless-stopped

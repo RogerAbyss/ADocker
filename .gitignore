@@ -1,2 +1,3 @@
 docker/nextcloud/data
 docker/netdata/data
+**/logs

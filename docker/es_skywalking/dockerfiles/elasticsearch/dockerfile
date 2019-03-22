@@ -1,0 +1,8 @@
+FROM elasticsearch:6.6.2
+
+LABEL maintainer="roger_ren@qq.com"
+
+USER root
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
