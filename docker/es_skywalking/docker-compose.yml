@@ -1,7 +1,7 @@
 version: '3.3'
+
 services:
   elasticsearch:
-    # image: elasticsearch:6.6.2
     build: dockerfiles/elasticsearch
     image: elasticsearch
     container_name: elasticsearch
@@ -10,6 +10,7 @@ services:
       - 9300:9300
     restart: unless-stopped
     environment:
+      - "cluster.name=elasticsearch-node-abyss"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     networks:
       - abyssnet
@@ -28,38 +29,6 @@ services:
       - abyssnet
     depends_on: 
       - elasticsearch
-  skywalking:
-    image: skywalking/oap:6.0.0-GA
-    container_name: skywalking
-    depends_on:
-      - elasticsearch
-    links:
-      - elasticsearch
-    restart: unless-stopped
-    ports:
-      - 11800:11800
-      - 12800:12800
-    volumes:
-      - ./data/logs/skywalking:/skywalking/logs
-      - ./data/config/skywalking:/skywalking/config:ro
-    networks:
-      - abyssnet
-  skywalking-ui:
-    image: skywalking/ui:6.0.0-GA
-    container_name: skywalking-ui
-    depends_on:
-      - skywalking
-    links:
-      - skywalking
-    restart: unless-stopped
-    ports:
-      - 8112:8080
-    networks:
-      - abyssnet
-    environment:
-      collector.ribbon.listOfServers: skywalking:12800
-      collector.ribbon.ReadTimeout: 20000
 
 networks:
   abyssnet:
-    driver: bridge
