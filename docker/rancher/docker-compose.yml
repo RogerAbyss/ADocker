@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  rancher:
+    image: rancher:lastest
+    container_name: rancher
+    ports:
+      - "80:80"
+      - "443:443"
+    environment: 
+      - "AUDIT_LEVEL=3"
+    volumes:
+      - ./logs:/var/log/auditlog
+    restart: unless-stopped
