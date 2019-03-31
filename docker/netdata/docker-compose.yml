@@ -9,7 +9,7 @@ services:
     volumes:
       - ./data/proc:/host/proc:ro
       - ./data/sys:/host/sys:ro
-      - ./data/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     cap_add:
       - SYS_PTRACE
     restart: unless-stopped
