@@ -1,0 +1,18 @@
+version: '3.3'
+
+# 集群管理 swarmpit
+# 这会生成另外一个集群 swarmpit
+# 管理端口  - 19997
+services:
+  swarmpit:
+    image: swarmpit/install:1.6
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: Asia/Shanghai
+      INTERACTIVE: 0
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: r61553757
+      APP_PORT: 19997
+      STACK_NAME: swarmpit
+      DB_VOLUME_DRIVER: local

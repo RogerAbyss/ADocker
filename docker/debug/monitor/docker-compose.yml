@@ -1,6 +1,18 @@
 version: '3.3'
 
+# monitor swarm
+# by Abyss
+# roger_ren@qq.com
+# 部署研究下labels, 部署到固定的主机名/群/组
+# 研究下traefik 反向代理
 services:
+  # 时序数据库 influxdb 1.2有图形界面
+  # 默认数据保持7天
+  # 需要持久化  - db
+  # 默认用户名admin/admin
+  # 数据库名字cadvisor
+  # httpd端口 - 8086
+  # 图形管理端口  - 8083
   influx:
     # image: abyss/influxdb
     image: influxdb:1.2
@@ -16,9 +28,9 @@ services:
       INFLUXDB_DB: cadvisor
       INFLUXDB_ADMIN_ENABLED: 1
       INFLUXDB_ADMIN_USER: admin
-      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_ADMIN_PASSWORD: r61553757
       INFLUXDB_USER: admin
-      INFLUXDB_USER_PASSWORD: admin
+      INFLUXDB_USER_PASSWORD: r61553757
     deploy:
       replicas: 1
       placement:
@@ -29,11 +41,18 @@ services:
           memory: 2g
           cpus: "10.00"
 
+  # 数据展示 grafana 6.0.0
+  # 数据源多样
+  # 默认用户名admin/admin
+  # 需要持久化  - dashboard
+  # 需要持久化  - config
+  # 需要持久化  - users
+  # 研究下 es与日志分析
   grafana:
     # image: abyss/grafana
     image: grafana/grafana:6.0.0
     ports:
-      - 0.0.0.0:80:3000
+      - 0.0.0.0:3000:3000
     networks:
       - net_grafana
     depends_on:
@@ -53,6 +72,8 @@ services:
           memory: 1g
           cpus: "3.00"
 
+  # 系统监控 cadvisor
+  # 管理端口  - 19998
   cadvisor:
     # image: abyss/cadvisor
     image: google/cadvisor
@@ -79,7 +100,8 @@ services:
           memory: 256m
           cpus: "3.00"
 
-
+  # 容器管理 portainer
+  # 管理端口  - 9000
   portainer:
     image: portainer/portainer
     ports:
@@ -102,10 +124,16 @@ services:
           memory: 256m
           cpus: "2.00"
 
+# 网络研究中
+# 覆盖网络会到每个节点
 networks:
   net_grafana:
     driver: overlay
 
+# 本地磁盘
+# 持久化方案研究中
+# 分布式同步方案
+# 容灾备份
 volumes:
   influx:
     driver: local
