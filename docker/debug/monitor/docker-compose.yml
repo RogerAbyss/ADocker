@@ -6,41 +6,6 @@ version: '3.3'
 # 部署研究下labels, 部署到固定的主机名/群/组
 # 研究下traefik 反向代理
 services:
-  # 时序数据库 influxdb 1.2有图形界面
-  # 默认数据保持7天
-  # 需要持久化  - db
-  # 默认用户名admin/admin
-  # 数据库名字cadvisor
-  # httpd端口 - 8086
-  # 图形管理端口  - 8083
-  influx:
-    # image: abyss/influxdb
-    image: influxdb:1.2
-    networks:
-      - net_grafana
-    ports:
-      - 0.0.0.0:8086:8086
-      - 0.0.0.0:8083:8083
-    volumes:
-      - influx:/var/lib/influxdb
-    environment:
-      TZ: Asia/Shanghai
-      INFLUXDB_DB: cadvisor
-      INFLUXDB_ADMIN_ENABLED: 1
-      INFLUXDB_ADMIN_USER: admin
-      INFLUXDB_ADMIN_PASSWORD: r61553757
-      INFLUXDB_USER: admin
-      INFLUXDB_USER_PASSWORD: r61553757
-    deploy:
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
-      resources:
-        limits:
-          memory: 2g
-          cpus: "10.00"
-
   # 数据展示 grafana 6.0.0
   # 数据源多样
   # 默认用户名admin/admin
@@ -48,19 +13,23 @@ services:
   # 需要持久化  - config
   # 需要持久化  - users
   # 研究下 es与日志分析
+  # 数据源1:
+  # Prometheus
+  # type: Prometheus
+  # proxy url: http://prometheus:9090
   grafana:
-    # image: abyss/grafana
     image: grafana/grafana:6.0.0
     ports:
       - 0.0.0.0:3000:3000
     networks:
-      - net_grafana
-    depends_on:
-      - influx
+      - net_monitor
     volumes:
       - grafana:/var/lib/grafana
-    environment:
-      TZ: Asia/Shanghai
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    depends_on:
+      - prometheus
     deploy:
       mode: replicated
       replicas: 1
@@ -70,19 +39,17 @@ services:
       resources:
         limits:
           memory: 1g
-          cpus: "3.00"
 
   # 系统监控 cadvisor
   # 管理端口  - 19998
   cadvisor:
-    # image: abyss/cadvisor
     image: google/cadvisor
     hostname: '{{.Node.Hostname}}'
     networks:
-      - net_grafana
+      - net_monitor
     ports:
-      - 0.0.0.0:19998:8080
-    command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
+      - 19998:8080
+    command: -logtostderr -docker_only
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -91,14 +58,89 @@ services:
       - /dev/disk/:/dev/disk:ro
     environment:
       TZ: Asia/Shanghai
-    depends_on:
-      - influx
     deploy:
       mode: global
       resources:
         limits:
+          memory: 128m
+
+  # 节点监控 node-exporter
+  # 管理端口  - 19997
+  node-exporter:
+    image: prom/node-exporter:v0.17.0
+    ports:
+      - 19997:9100
+    networks:
+      - net_monitor
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    deploy:
+      mode: global
+      resources:
+        limits:
+          memory: 128m
+  
+  # 监控系统  prometheus
+  prometheus:
+    image: prom/prometheus:v2.8.1
+    ports:
+      - 9090:9090
+    networks:
+      - net_monitor
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    environment:
+      TZ: Asia/Shanghai
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    depends_on:
+      - cadvisor
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
           memory: 256m
-          cpus: "3.00"
+  
+  # 警报器
+  alertmanager:
+    image: prom/alertmanager:v0.16.2
+    ports:
+      - 9093:9093
+    networks:
+      - net_monitor
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    environment:
+      TZ: Asia/Shanghai
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 128m
 
   # 容器管理 portainer
   # 管理端口  - 9000
@@ -107,7 +149,7 @@ services:
     ports:
       - 0.0.0.0:9000:9000
     networks:
-      - net_grafana
+      - net_monitor
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer:/data
@@ -122,22 +164,23 @@ services:
       resources:
         limits:
           memory: 256m
-          cpus: "2.00"
 
 # 网络研究中
 # 覆盖网络会到每个节点
 networks:
-  net_grafana:
+  net_monitor:
     driver: overlay
+    # attachable需要研究一下
+    # attachable: true
 
 # 本地磁盘
 # 持久化方案研究中
 # 分布式同步方案
 # 容灾备份
 volumes:
-  influx:
-    driver: local
   grafana:
     driver: local
   portainer:
+    driver: local
+  prometheus_data:
     driver: local

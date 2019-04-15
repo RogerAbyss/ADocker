@@ -1,0 +1,15 @@
+global:
+  smtp_smarthost: 'smtp.163.com:25'
+  smtp_from: 'abyss@rogerabyss.cn'
+  smtp_auth_username: 'abyss@rogerabyss.cn'
+  smtp_auth_password: '61553757'
+  
+route:
+  group_by: ['alertname']
+  receiver: 'email'
+  repeat_interval: 4h
+
+receivers:
+  - name: 'email'
+    email_configs:
+      - to: 'roger_ren@qq.com'
