@@ -147,6 +147,7 @@ services:
   # 9000和php冲突
   portainer:
     image: portainer/portainer
+    command: -H tcp://tasks.portainner_agent:9001 --tlsskipverify
     ports:
       - 0.0.0.0:19000:9000
     networks:
@@ -165,6 +166,17 @@ services:
       resources:
         limits:
           memory: 256m
+  
+  portainner_agent:
+    image: portainer/agent
+    environment:
+      AGENT_CLUSTER_ADDR: tasks.portainner_agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - net_monitor
+    deploy:
+      mode: global
 
   # 容器私有仓库 registry
   # 管理端口  - 5000
@@ -197,7 +209,7 @@ networks:
   net_monitor:
     driver: overlay
     # attachable需要研究一下
-    # attachable: true
+    attachable: true
 
 # 本地磁盘
 # 持久化方案研究中
