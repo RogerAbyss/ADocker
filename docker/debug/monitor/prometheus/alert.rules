@@ -13,7 +13,7 @@ groups:
       description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 2 minutes."
 
   - alert: high_load_cpu
-    expr: node_load5 > 0.7
+    expr: rate(container_cpu_usage_seconds_total{name=~".+"}[1m]) > 0.7
     for: 5m
     labels:
       severity: warning
