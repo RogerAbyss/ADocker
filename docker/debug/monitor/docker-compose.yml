@@ -98,7 +98,7 @@ services:
       - net_monitor
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      - prometheus:/prometheus
     environment:
       TZ: Asia/Shanghai
     command:
@@ -166,6 +166,31 @@ services:
         limits:
           memory: 256m
 
+  # 容器私有仓库 registry
+  # 管理端口  - 5000
+  # 如果不是https
+  # 需要设置 insecure-registries
+  registry:
+    image: registry:2
+    networks:
+      - net_monitor
+    ports:
+      - 0.0.0.0:5000:5000
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - registry:/var/lib/registry
+      - ./registry/config.yml:/etc/docker/registry/config.yml
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 1g
+
 # 网络研究中
 # 覆盖网络会到每个节点
 networks:
@@ -183,5 +208,7 @@ volumes:
     driver: local
   portainer:
     driver: local
-  prometheus_data:
+  prometheus:
+    driver: local
+  registry:
     driver: local

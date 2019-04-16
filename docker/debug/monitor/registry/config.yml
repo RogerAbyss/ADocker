@@ -1,0 +1,9 @@
+version: 0.1
+log:
+  level: debug
+storage:
+    filesystem:
+        rootdirectory: /var/lib/registry
+http:
+    addr: 0.0.0.0:5000
+    secret: A1q2w3e4r5t
