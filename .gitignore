@@ -2,3 +2,4 @@ docker/**/nextcloud/data
 docker/**/netdata/data
 docker/**/portainer/data
 **/logs
+.DS_Store
