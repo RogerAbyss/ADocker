@@ -147,7 +147,7 @@ services:
   # 9000和php冲突
   portainer:
     image: portainer/portainer
-    command: -H tcp://tasks.portainner_agent:9001 --tlsskipverify
+    command: -H tcp://tasks.portainner-agent:9001 --tlsskipverify
     ports:
       - 0.0.0.0:19000:9000
     networks:
@@ -167,10 +167,10 @@ services:
         limits:
           memory: 256m
   
-  portainner_agent:
+  portainner-agent:
     image: portainer/agent
     environment:
-      AGENT_CLUSTER_ADDR: tasks.portainner_agent
+      AGENT_CLUSTER_ADDR: tasks.portainner-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
@@ -203,6 +203,57 @@ services:
         limits:
           memory: 1g
 
+  # teamcity teamcity-server
+  # 最多3个agent
+  # 管理端口  - 8111
+  # TODO: datadir有什么用呢？
+  teamcity-server:
+    image: jetbrains/teamcity-server
+    networks:
+      - net_monitor
+    ports:
+      - 0.0.0.0:8111:8111
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - teamcity:/data/teamcity_server/datadir
+      - ./teamcity/server/logs:/opt/teamcity/logs  
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
+  # teamcity teamcity_agent
+  # 目录大小和用处??
+  # 如何扩展环境
+  teamcity-agent:
+    image: jetbrains/teamcity-agent
+    networks:
+      - net_monitor
+    environment:
+      TZ: Asia/Shanghai
+      SERVER_URL: teamcity-server:8111
+      AGENT_NAME: teamcity-agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./teamcity/agent/conf:/data/teamcity_agent/conf
+      - teamcityAgent:/opt/buildagent
+      # - ./teamcity/agent/buildagent/work:/opt/buildagent/work
+      # - ./teamcity/agent/buildagent/temp:/opt/buildagent/temp
+      # - ./teamcity/agent/buildagent/tools:/opt/buildagent/tools
+      # - ./teamcity/agent/buildagent/plugins:/opt/buildagent/plugins
+      # - ./teamcity/agent/buildagent/system:/opt/buildagent/system
+    depends_on:
+      - teamcity-server
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
 # 网络研究中
 # 覆盖网络会到每个节点
 networks:
@@ -215,6 +266,7 @@ networks:
 # 持久化方案研究中
 # 分布式同步方案
 # 容灾备份
+# 需要正确的测量文件大小, 配置类可以直接放仓库
 volumes:
   grafana:
     driver: local
@@ -223,4 +275,8 @@ volumes:
   prometheus:
     driver: local
   registry:
+    driver: local
+  teamcity:
+    driver: local
+  teamcityAgent:
     driver: local
